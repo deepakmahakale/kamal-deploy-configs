@@ -11,7 +11,6 @@ servers:
       traefik.http.routers.gems_directory.tls.certresolver: letsencrypt
     options:
       network: private
-      'add-host': host.docker.internal:host-gateway
 registry:
   username: <DOCKER_USERNAME>
   password:

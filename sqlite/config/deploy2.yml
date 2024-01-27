@@ -1,8 +1,8 @@
 # Name of your application. Used to uniquely configure containers.
-service: kamal_sqlite_app_1
+service: kamal_sqlite_app_2
 
 # Name of the container image.
-image: <DOCKER_USERNAME>/kamal_sqlite_app_1
+image: <DOCKER_USERNAME>/kamal_sqlite_app_2
 
 # Deploy to these servers.
 servers:
@@ -15,6 +15,7 @@ servers:
       traefik.http.routers.dailydevtools.tls.certresolver: letsencrypt
     options:
       network: 'private'
+      'add-host': host.docker.internal:host-gateway
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
@@ -36,22 +37,3 @@ env:
 #   user: app
 volumes:
   - '/storage:/rails/storage'
-
-# Configure custom arguments for Traefik
-traefik:
-  options:
-    publish:
-      - '443:443'
-    volume:
-      - '/letsencrypt/acme.json:/letsencrypt/acme.json'
-    network: 'private'
-  args:
-    entryPoints.web.address: ':80'
-    entryPoints.websecure.address: ':443'
-    entryPoints.web.http.redirections.entryPoint.to: websecure
-    entryPoints.web.http.redirections.entryPoint.scheme: https
-    entryPoints.web.http.redirections.entrypoint.permanent: true
-    certificatesResolvers.letsencrypt.acme.email: '<YOUR_EMAIL_ADDRESS>'
-    certificatesResolvers.letsencrypt.acme.storage: '/letsencrypt/acme.json'
-    certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web

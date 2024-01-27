@@ -27,6 +27,7 @@ This `sqlite` directory includes the following files:
 
 ```sh
 - config/deploy.yml
+- config/deploy2.yml # Use this for second rails app
 - config/database.yml
 .env
 Dockerfile
