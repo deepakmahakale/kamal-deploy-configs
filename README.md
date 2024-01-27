@@ -31,3 +31,21 @@ This `sqlite` directory includes the following files:
 .env
 Dockerfile
 ```
+
+## PostgreSQL
+
+Ensure the `Gemfile` has following entry:
+
+```ruby
+# Use sqlite3 as the database for Active Record
+gem "pg"
+```
+
+This `postgresql` directory includes the following files:
+
+```sh
+- config/deploy.yml
+- config/database.yml
+.env
+Dockerfile
+```
